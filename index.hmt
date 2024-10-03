@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Temperature Converter</title>
+</head>
+<body>
+  <h1>Temperature Converter</h1>
+
+  <label for="temperature">Temperature:</label>
+  <input type="text" id="temperature" name="temperature">
+
+  <label for="unit">Unit:</label>
+  <select id="unit">
+    <option value="celsius">Celsius</option>
+    <option value="fahrenheit">Fahrenheit</option>
+    <option value="kelvin">Kelvin</option>
+  </select>
+
+  <button onclick="convertTemperature()">Convert</button>
+
+  <p id="result"></p>
+
+  <script>
+    function convertTemperature() {
+      var temperature = document.getElementById("temperature").value;
+      var unit = document.getElementById("unit").value;
+      var result = document.getElementById("result");
+
+      if (isNaN(temperature)) {
+        result.innerHTML = "Please enter a valid number.";
+        return;
+      }
+
+      if (unit === "celsius") {
+        // Convert Celsius to Fahrenheit and Kelvin
+        var fahrenheit = (temperature * 9/5) + 32;
+        var kelvin = temperature + 273.15;
+        result.innerHTML = "Converted temperature: " + fahrenheit.toFixed(2) + " °F, " + kelvin.toFixed(2) + " K";
+      } else if (unit === "fahrenheit") {
+        // Convert Fahrenheit to Celsius and Kelvin
+        var celsius = (temperature - 32) * 5/9;
+        var kelvin = (celsius + 273.15);
+        result.innerHTML = "Converted temperature: " + celsius.toFixed(2) + " °C, " + kelvin.toFixed(2) + " K";
+      } else if (unit === "kelvin") {
+        // Convert Kelvin to Celsius and Fahrenheit
+        var celsius = temperature - 273.15;
+        var fahrenheit = (celsius * 9/5) + 32;
+        result.innerHTML = "Converted temperature: " + celsius.toFixed(2) + " °C, " + fahrenheit.toFixed(2) + " °F";
+      }
+    }
+  </script>
+</body>
+</html>
